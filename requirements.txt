@@ -1,5 +1,5 @@
 cellpose==0.6.1
-streamlit==0.81
+streamlit==0.86.0
 matplotlib
 scikit-image
 tensorflow==2.4.1
