@@ -1,0 +1,6 @@
+cellpose==0.6.1
+streamlit==0.81
+matplotlib
+scikit-image
+tensorflow==2.4.1
+openflexure-microscope-client

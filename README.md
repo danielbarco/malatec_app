@@ -9,7 +9,7 @@ The app also functions without an openflexure microscope just by uploading image
 ![Malaria app Demo](malatec_mvp2.gif)  
 
 ## Start-up instructions
-Run the docker file from a laptop/ computer while the Openflexure microscope is up and running. First build the dockerfile from within the malatec_app/docker folder:
+Run the docker file from a laptop/ computer while the Openflexure microscope is up and running. First build the dockerfile:
 
 ```bash
 docker build -t malatec_app .
