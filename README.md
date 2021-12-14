@@ -13,11 +13,14 @@ Run the docker file from a laptop/ computer while the Openflexure microscope is 
 
 ```bash
 docker build -t malatec_app .
+
+# if you are using an AArch64/ARM64 CPU (e.g. a Raspberry Pi 4 or later), use:
+docker build -f Dockerfile.aarch64 -t malatec_app .
 ```
 Now you can run the docker file, which starts up the streamlit app:
 
 ```bash
-docker run -it --rm --name malatec_app -v /home/fight/Documents/malatec_app/docker  malatec_app:latest
+docker run --rm --name malatec_app malatec_app:latest
 ```
 Follow the link provided in the console and you should be able to see the streamlit app.
 
