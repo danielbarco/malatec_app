@@ -1,8 +1,11 @@
 # tensorflow 2.4.0 dependencies
-# (we install them explicitly here and install tensorflow itself whith --no-deps flag
-#  because the dependency numpy<1.19.0 described in the tensorflow 2.4.0 wheel
-#  cannot be satisfied (numpy on AArch64 seems to work best starting from version 1.19.0,
-#  at least for the tests on Raspberry Pi 4 Model B))
+#
+# we install them explicitly here and install tensorflow itself whith --no-deps flag
+# because the dependency numpy<1.19.0 described in the tensorflow 2.4.0 wheel
+# cannot be satisfied because wheels for numpy on AArch64 for Linux where only created
+# since version 1.19.0, e.g. compare:
+# https://github.com/numpy/numpy/releases/tag/v1.18.4 wheels vs
+# https://github.com/numpy/numpy/releases/tag/v1.19.0
 absl-py>=0.7.0
 astunparse==1.6.3
 gast==0.3.3
