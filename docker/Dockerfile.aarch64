@@ -10,7 +10,7 @@ WORKDIR /app
 #
 # this might be no longer necessary in the future if:
 #   - a dev/full version of the base image here is used instead of python:3.7-slim-buster
-#   - or if Python <= 3.9 is used (because then, the backport of zoneinfo is no longer needed)
+#   - or if Python >= 3.9 is used (because then, the backport of zoneinfo is no longer needed)
 #   - or maybe if https://github.com/pganssle/zoneinfo/issues/110 will be solved
 #
 #
