@@ -1,0 +1,44 @@
+# use python:3.7 for now since its the only Python version supported by the custom ARM64 tensorflow==2.4.0 wheel
+FROM python:3.7-slim-buster
+
+WORKDIR /app
+
+
+# install the "build-essential" package
+# to get the "gcc" binary which is used by the "backports.zoneinfo" Python package
+# which is a dependency of streamlit==0.81 (see requirements.txt)
+#
+# this might be no longer necessary in the future if:
+#   - a dev/full version of the base image here is used instead of python:3.7-slim-buster
+#   - or if Python <= 3.9 is used (because then, the backport of zoneinfo is no longer needed)
+#   - or maybe if https://github.com/pganssle/zoneinfo/issues/110 will be solved
+#
+#
+# also,
+# install the "pkg-config" and "libhdf5-dev" packages to allow the installation of the Python package "h5py" (see requirements.txt)
+# on ARM CPUs, as suggested in https://github.com/h5py/h5py/issues/1461#issuecomment-563118689
+# (this will hopefully no longer be necessary in the future)
+RUN apt update
+RUN apt install build-essential pkg-config libhdf5-dev -y
+
+RUN /usr/local/bin/python -m pip install --upgrade pip
+
+COPY requirements.txt requirements.txt
+
+RUN pip install -r requirements.txt
+
+# we use a custom ARM64 build for tensorflow==2.4.0 since there are no official ARM64 for the full version of TensorFlow:
+RUN pip install --no-deps https://github.com/sanjayseshan/tensorflow-aarch64/releases/download/v2.4.0/tensorflow-2.4.0-cp37-cp37m-linux_aarch64.whl
+# we cannot add this command to requirements.txt since the --no-deps flag is not available in requirements.txt,
+# see https://pip.pypa.io/en/latest/reference/requirements-file-format/#per-requirement-options
+
+
+# cellpose requires large models, load these from cache with:
+RUN python -c 'from cellpose import models'
+
+
+EXPOSE 8501
+
+COPY . .
+ENTRYPOINT ["streamlit","run"]
+CMD ["app.py"]
