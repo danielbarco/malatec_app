@@ -1,4 +1,4 @@
-# this needs to imported first, to avoid the error message
+# this needs to be imported first, to avoid the error message
 # "cannot allocate memory in static TLS block" when using AArch64 CPUs,
 # see https://github.com/opencv/opencv/issues/14884#issuecomment-599852128
 from skimage.util import img_as_ubyte
