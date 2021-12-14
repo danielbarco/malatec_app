@@ -23,7 +23,7 @@ RUN apt install build-essential pkg-config libhdf5-dev -y
 
 RUN /usr/local/bin/python -m pip install --upgrade pip
 
-COPY requirements.txt requirements.txt
+COPY requirements-aarch64.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
