@@ -20,7 +20,9 @@ docker build -f Dockerfile.aarch64 -t malatec_app .
 Now you can run the docker file, which starts up the streamlit app:
 
 ```bash
-docker run --rm --name malatec_app malatec_app:latest
+# -p 8501:8501 is needed if you want to serve other computers in your network,
+# be sure to use the external IP address of the docker host (not the docker container) to access streamlit in a browser
+docker run --rm --name malatec_app -p 8501:8501 malatec_app:latest
 ```
 Follow the link provided in the console and you should be able to see the streamlit app.
 
