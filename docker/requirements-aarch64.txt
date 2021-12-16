@@ -1,0 +1,36 @@
+# tensorflow 2.4.0 dependencies
+#
+# we install them explicitly here and install tensorflow itself whith --no-deps flag
+# because the dependency numpy<1.19.0 described in the tensorflow 2.4.0 wheel
+# cannot be satisfied because wheels for numpy on AArch64/ARM64 CPUs for Linux where only created
+# since version 1.19.0, e.g. compare:
+# https://github.com/numpy/numpy/releases/tag/v1.18.4 wheels vs
+# https://github.com/numpy/numpy/releases/tag/v1.19.0
+absl-py>=0.7.0
+astunparse==1.6.3
+gast==0.3.3
+google-pasta>=0.1.8
+grpcio>=1.8.6
+h5py<2.11.0,>=2.10.0
+keras-preprocessing<1.2,>=1.1.1
+opt-einsum>=2.3.2
+protobuf>=3.9.2
+six>=1.12.0
+tensorboard<2.3.0,>=2.2.0
+tensorflow-estimator<2.3.0,>=2.2.0
+termcolor>=1.1.0
+wrapt>=1.11.1
+
+
+numpy
+scikit-image
+matplotlib
+openflexure-microscope-client
+cellpose==0.6.1
+streamlit==0.81
+
+# torch==1.8.1 does NOT throw 'illegal instruction' SIGILL on AArch64/ARM64 CPUs, but newer versions might,
+# see https://github.com/JaidedAI/EasyOCR/issues/494#issuecomment-903576063
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==1.8.1
+torchvision==0.9.1

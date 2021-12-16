@@ -1,3 +1,8 @@
+# this needs to be imported first, to avoid the error message
+# "cannot allocate memory in static TLS block" when using AArch64/ARM64 CPUs,
+# see https://github.com/opencv/opencv/issues/14884#issuecomment-599852128
+from skimage.util import img_as_ubyte
+
 import numpy as np
 import streamlit as st
 
@@ -25,7 +30,6 @@ from tensorflow.nn import softmax
 from load_css import local_css
 local_css("style.css")
 
-from skimage.util import img_as_ubyte
 import openflexure_microscope_client as ofm_client
 
 def imread(image_up):
